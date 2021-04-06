@@ -1,0 +1,10 @@
+{
+    "nodes": [
+      {"name": "Gerbang Depan ITB", "lat": -6.893247, "lon": 107.610462}
+
+    ],
+    "edges": [
+      {"from": "Gerbang Depan ITB", "to": "Pintu Parkir SR"}
+
+    ]
+}

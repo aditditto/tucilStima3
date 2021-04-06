@@ -1,0 +1,33 @@
+{
+    "nodes": [
+      {
+        "name": "a",
+        "lat": 5,
+        "lon": 5
+      },
+      {
+        "name": "b",
+        "lat": 1,
+        "lon": 2
+      },
+      {
+        "name": "c",
+        "lat": 3,
+        "lon": 4
+      }
+    ],
+    "edges": [
+      {
+        "from": "a",
+        "to": "b"
+      },
+      {
+        "from": "a",
+        "to": "c"
+      },
+      {
+        "from": "b",
+        "to": "c"
+      }
+    ]
+  }
