@@ -14,7 +14,8 @@ Pada tugas ini dimanfaatkan algoritma A* dalam pencarian rute dalam suatu kota. 
 1. Buka folder src atau bin dengan program Visual Studio Code.
 2. Pastikan sudah terinstall extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) pada Visual Studio Code.
 3. Buka file index.html lalu tekan tombol Go Live pada pojok kanan bawah layar.
-4. Seharusnya aplikasi web sudah terbuka di web browser anda. 
+4. Seharusnya aplikasi web sudah terbuka di web browser anda.
+5. Untuk menjalankan aplikasi web mungkin dapat menggunakan cara lain (misal membuka langsung file index.html di browser), tetap yang sudah dipastikan bisa adalah dengan cara diatas.
 5. Masukkan file input json melalui uploader yang ada di bagian kiri atas map.
 6. Pilih starting node dan goal node melalui menu dibawah map.
 7. Setelah sudah dipilih, jalur terpendek dan panjang jalurnya sesuai algoritma A* akan ditampilkan di layar.
