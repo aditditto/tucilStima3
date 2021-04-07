@@ -1,0 +1,28 @@
+{
+    "nodes": [
+      {"name": "kiri bawah", "lat": -6.180551, "lon": 106.823051},
+      {"name": "kanan bawah", "lat": -6.180039, "lon": 106.831613},
+      {"name": "kanan atas", "lat": -6.171613, "lon": 106.829402},
+      {"name": "kiri atas", "lat": -6.171442, "lon": 106.822987},
+      {"name": "monas", "lat": -6.17541, "lon": 106.827149},
+      {"name": "Masjid Istiqlal", "lat": -6.169738, "lon": 106.830357},
+      {"name": "per4an", "lat": -6.168287, "lon": 106.830454},
+      {"name": "per3an", "lat": -6.167807, "lon": 106.827321},
+      {"name": "Mahkamah Agung", "lat": -6.171199, "lon": 106.827246}
+    ],
+    "edges": [
+      {"from": "kiri bawah", "to": "kanan bawah"},
+      {"from": "kanan bawah", "to": "kanan atas"},
+      {"from": "kanan atas", "to": "Mahkamah Agung"},
+      {"from": "Mahkamah Agung", "to": "kiri atas"},
+      {"from": "kiri atas", "to": "kiri bawah"},
+      {"from": "kiri bawah", "to": "monas"},
+      {"from": "kanan bawah", "to": "monas"},
+      {"from": "kanan atas", "to": "monas"},
+      {"from": "kiri atas", "to": "monas"},
+      {"from": "kanan atas", "to": "Masjid Istiqlal"},
+      {"from": "Masjid Istiqlal", "to": "per4an"},
+      {"from": "per4an", "to": "per3an"},
+      {"from": "per3an", "to": "Mahkamah Agung"}
+    ]
+}
