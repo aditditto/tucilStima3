@@ -18,6 +18,7 @@ class Graph {
         this.adjMatrix = []; //tar dibikin dari baca file le
         this.nodeCircles = L.layerGroup([]);
         this.edgePaths = L.layerGroup([]);
+        this.shortestPath = L.layerGroup([]);
     }
 
     getNode(name) {
@@ -44,6 +45,23 @@ class Graph {
         }
     }
 
+    drawPath(path, map) {
+        this.shortestPath.clearLayers();
+        let sum = 0;
+        for (let i = 0; i < path.length-1; i++) {
+            let from = this.getNode(path[i]);
+            let to = this.getNode(path[i+1]);
+            var line = L.polyline([from.getLatLon(), to.getLatLon()], {color:'red'});
+            this.shortestPath.addLayer(line);
+            this.shortestPath.addTo(map);
+
+            sum += earthDistance(from.lat,from.lon,to.lat,to.lon);
+        }
+
+        let textsum = document.getElementById("sum-path");
+        textsum.innerHTML="Shortest path's distance: "+sum.toString();
+    }
+
     draw(map) {
         this.makeNodeMarkers();
         this.makeEdgePath();
@@ -52,14 +70,14 @@ class Graph {
     }
 
     clear() {
-        this.edgePaths.eachLayer(function (layer) {
-            layer.remove();
-        });
-        this.nodeCircles.eachLayer(function (layer) {
-            layer.remove();
-        });
+        //delete and render new map when file selected
+        this.shortestPath.clearLayers();
         this.edgePaths.clearLayers();
         this.nodeCircles.clearLayers();
+    }
+    
+    getIndex(name) {
+        return this.nodes.findIndex(x => x.name == name);
     }
 }
 
@@ -85,6 +103,7 @@ function deg2rad(deg) {
 //VARIABEL GLOBAL
 //Render map when landing on page
 let map = L.map('mapid').setView([-6.889295, 107.610365], 17);
+var graph = new Graph();
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -113,25 +132,33 @@ const premain = (event) => {
 }
 
 const main = (nodes, edges) => {
-    //delete and render new map when file selected
-    map.eachLayer((layer)=> {
-        map.removeLayer(layer);
-    })
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    L.marker([-6.889295, 107.610365]).addTo(map)
-    .bindPopup('ITEBE')
-    .openPopup();
+    graph.clear();
+    let from = document.getElementById("from-node");
+    let goal = document.getElementById("to-node");
+    let i=0;
+    if (from.length != 0 || goal.length!=0){
+        while(from.length!=0 && goal.length!=0){
+            from.remove(from.i);
+            goal.remove(goal.i);
+            i++;
+        }
+    }
+    
     let nodeArr = [];
     for (let node of nodes) {
         let tnode = new Node(node.name, node.lat, node.lon);
         nodeArr.push(tnode);
     }
 
-    let graph = new Graph();
-    graph.clear();
+    for (let node of nodes){
+        let elmtfrom = document.createElement("option");
+        let elmtto = document.createElement("option");
+        elmtfrom.text = node.name;
+        elmtto.text = node.name;
+        document.getElementById("from-node").add(elmtfrom);
+        document.getElementById("to-node").add(elmtto);
+    }
+    
     graph.nodes = nodeArr;
     
     let mtrx2D = [];
@@ -169,4 +196,57 @@ const main = (nodes, edges) => {
     
     graph.adjMatrix = mtrx2D;
     graph.draw(map);
+}
+
+function Astar() {
+    let fromnode = document.getElementById("from-node");
+    let goalnode = document.getElementById("to-node");
+    let startname = fromnode.options[fromnode.selectedIndex].text;
+    let goal = goalnode.options[goalnode.selectedIndex].text;
+    let unvisited = [];
+    let start = {};
+    start.name = startname;
+    start.prev = null;
+    start.fValue = undefined;
+    start.cost = undefined;
+    let path = aBintang(start, goal, 0, unvisited);
+    path.reverse();
+    graph.drawPath(path, map);
+    return path;
+}
+
+function aBintang(current, goal, gValue, unvisited) {
+    if (current.name == goal) {
+        let path = [];
+        while (current != null) {
+            path.push(current.name);
+            current = current.prev;
+        }
+        return path;
+    }
+
+    let currIdx = graph.getIndex(current.name);
+    //masukin ituan
+    for (let i = 0; i < graph.nodes.length; i++) {
+        if (graph.adjMatrix[currIdx][i] > 0) {
+            let toVisit = {};
+            toVisit.name = graph.nodes[i].name;
+            toVisit.prev = current;
+            toVisit.cost = Number(graph.adjMatrix[currIdx][i]);
+            toVisit.fValue = Number(graph.nodes[i].distanceTo(graph.getNode(goal))) + Number(gValue) + Number(graph.adjMatrix[currIdx][i]);
+            unvisited.push(toVisit);
+        }
+    }
+
+    let minIdx = 0;
+    for (let i = 1; i < unvisited.length; i++) {
+        if (unvisited[i].fValue < unvisited[minIdx].fValue) {
+            minIdx = i;
+        }
+    }
+
+    let next = unvisited.splice(minIdx, 1);
+    let newG = gValue+next[0].cost;
+
+    return aBintang(next[0], goal, newG, unvisited);
 }

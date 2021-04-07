@@ -1,0 +1,19 @@
+{
+    "nodes": [
+      {"name": "Khatulistiwa Park", "lat": 0.0046777724450385375, "lon":109.32129493431304},
+      {"name": "Taman Alun Kapuas", "lat":-0.01677989933545886, "lon":109.33931937894683},
+      {"name": "Ligo Mitra", "lat":-0.03305337337905037, "lon":109.34121976448674},
+      {"name": "Harum Manis Permai Swalayan", "lat":-0.027410540232185348, "lon":109.34126007039389},
+      {"name": "Ayani Megamal", "lat":-0.05064687529611029, "lon":109.34603078091011},
+      {"name": "Tanjungpura University", "lat":-0.05917879067431956, "lon":109.34382590283634},
+      {"name": "Komplek Bali Mas 3", "lat":-0.07065835683765276, "lon":109.35393868939545},
+      {"name": "Bubur Ikan Siau Tie", "lat":-0.05013854753738196, "lon":109.33132953556888}
+    ],
+    "edges": [
+      {"from": "Khatulistiwa Park", "to": "Taman Alun Kapuas"},
+      {"from": "Taman Alun Kapuas", "to": "Ligo Mitra"},
+      {"from": "Ligo Mitra", "to": "Harum Manis Permai Swalayan"},
+      {"from": "Ayani Megamal", "to": "Tanjungpura University"},
+      {"from": "Tanjungpura University", "to": "Komplek Bali Mas 3"}
+    ]
+}

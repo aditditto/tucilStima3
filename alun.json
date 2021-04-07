@@ -1,10 +1,21 @@
 {
     "nodes": [
-      {"name": "Gerbang Depan ITB", "lat": -6.893247, "lon": 107.610462}
-
+      {"name": "Asia Afrika", "lat": -6.920828781675338, "lon": 107.60896847048997},
+      {"name": "Masjid Raya Bandung", "lat":-6.92163374176775, "lon": 107.60609591419654},
+      {"name": "Parahyangan Plaza", "lat":-6.922366683344902, "lon":107.60625984187796},
+      {"name": "Menara BRI Bandung", "lat":-6.920675577253347, "lon": 107.60748890647827},
+      {"name": "Kantor Pos Bandung", "lat":-6.920660413770919, "lon":107.60615781894643},
+      {"name": "Perempatan Jend.Sudirman", "lat":-6.920830733795276, "lon":107.604101489443},
+      {"name": "Perempatan Alun-Alun Timur", "lat":-6.922575041327994, "lon":107.60762879894737},
+      {"name": "Museum Konferensi Asia Afrika", "lat":-6.921062526473543, "lon":107.60959280272674}
     ],
     "edges": [
-      {"from": "Gerbang Depan ITB", "to": "Pintu Parkir SR"}
-
+      {"from": "Asia Afrika", "to": "Museum Konferensi Asia Afrika"},
+      {"from": "Asia Afrika", "to": "Menara BRI Bandung"},
+      {"from": "Menara BRI Bandung", "to": "Kantor Pos Bandung"},
+      {"from": "Kantor Pos Bandung", "to": "Masjid Raya Bandung"},
+      {"from": "Kantor Pos Bandung", "to": "Perempatan Jend.Sudirman"},
+      {"from": "Perempatan Alun-Alun Timur", "to": "Asia Afrika"},
+      {"from": "Perempatan Alun-Alun Timur", "to": "Parahyangan Plaza"}
     ]
 }

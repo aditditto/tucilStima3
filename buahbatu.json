@@ -1,0 +1,21 @@
+{
+    "nodes": [
+      {"name": "Lapang Komplek Pandanwangi", "lat": -6.961633537292776, "lon":107.65120530919192},
+            {"name": "SMK Negeri 10 Bandung", "lat":-6.963550486215698, "lon":107.65794301822925},
+      {"name": "SMKN 6 Bandung", "lat":-6.939012949138813, "lon":107.68184686490379},
+      {"name": "Dinas Sosial Kota Bandung", "lat":-6.961676136205867, "lon":107.68210435703361},
+      {"name": "Metro Indah Mall", "lat":-6.940390525739408, "lon":107.65881916315475},
+      {"name": "Edelweiss Hospital", "lat":-6.9428264783687865, "lon":107.64979732342941},
+      {"name": "Scoop & Skoops", "lat":-6.959340471390643, "lon":107.66163397716123},
+      {"name": "Balai Besar Wilayah Sungai Citarum, Kantor BBWS", "lat":-6.947680128026537, "lon":107.67177381703966}
+    ],
+    "edges": [
+      {"from": "Lapang Komplek Pandanwangi", "to": "SMK Negeri 10 Bandung"},
+      {"from": "Lapang Komplek Pandanwangi", "to": "SMKN 6 Bandung"},
+      {"from": "Dinas Sosial Kota Bandung", "to": "Balai Besar Wilayah Sungai Citarum, Kantor BBWS"},
+      {"from": "Balai Besar Wilayah Sungai Citarum, Kantor BBWS", "to": "Metro Indah Mall"},
+      {"from": "Metro Indah Mall", "to": "Edelweiss Hospital"},
+      {"from": "Metro Indah Mall", "to": "Scoop & Skoops"},
+      {"from": "Scoop & Skoops", "to": "Dinas Sosial Kota Bandung"}
+    ]
+}
